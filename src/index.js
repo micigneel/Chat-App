@@ -53,7 +53,7 @@ io.on('connection', (socket)=>{
     socket.on('send-location', (location, callback)=>{
         const user =  getUser(socket.id);
         if(user){
-            socket.broadcast.to(user.room).emit('locationMessage', 
+            io.to(user.room).emit('locationMessage', 
             generateMessage('https://www.google.com/maps?q='+location.lat+','+location.long, user.username));
             callback();
         }
